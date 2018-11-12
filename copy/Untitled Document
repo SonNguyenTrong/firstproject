@@ -1,0 +1,19 @@
+@foreach($listTicket as $ticket)
+		<tr class="gradeA even" role="row">
+            <td class="sorting_1">{{ $ticket->title }}</td>
+            <td>{{ $ticket->content }}</td>
+            <td>
+            	<a href="{{ action('TicketController@edit' , ['id' => $ticket->id]) }}" >
+            	<button type="button" class="btn btn-success">Edit</button>
+            	</a>
+                <form method="POST" action = {{ route('users.destroy', [$ticket->id]) }}>
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                	
+                	<button onlick="return confirm_delete()" type="submit" class="btn btn-danger"">Delete
+                        </button>
+                	
+                </form>
+        	</td>
+        </tr>
+		@endforeach
